@@ -1,0 +1,3 @@
+ppport.h linguist-vendored
+typemap linguist-vendored
+*.t linguist-language=Perl
