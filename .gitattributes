@@ -1,3 +1,6 @@
+*.t linguist-language=Perl
+inc/Devel/AssertOS.pm linguist-vendored
+inc/Devel/AssertOS/OpenBSD.pm linguist-vendored
+inc/Devel/CheckOS.pm linguist-vendored
 ppport.h linguist-vendored
 typemap linguist-vendored
-*.t linguist-language=Perl
