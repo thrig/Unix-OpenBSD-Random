@@ -1,7 +1,7 @@
 
 ###############################################################################
 ##
-##    Typemap for Unix::OpenBSD::Random objects
+##    Typemap for Unix::OpenBSD::Random
 ##
 ##    Copyright (c) 2018 Jeremy Mates
 ##    All rights reserved.
@@ -16,22 +16,12 @@
 
 TYPEMAP
 
-Unix_OpenBSD_Random T_PTROBJ_SPECIAL
+uint32_t                        T_IV
 
 INPUT
-T_PTROBJ_SPECIAL
-    if (sv_derived_from($arg, \"${(my $ntt=$ntype)=~s/_/::/g;\$ntt}\")) {
-	$var = SvRV($arg);
-    }
-    else
-	croak(\"$var is not of type ${(my $ntt=$ntype)=~s/_/::/g;\$ntt}\")
+T_IV
+        $var = ($ntype)SvIV($arg)
 
 OUTPUT
-T_PTROBJ_SPECIAL
-    /* inherited new() */
-    if ( strcmp(classname,\"${(my $ntt=$ntype)=~s/_/::/g;\$ntt}\") != 0 )
-	$arg = sv_bless(newRV_noinc($var),
-	    gv_stashpv(classname,TRUE));
-    else
-	$arg = sv_bless(newRV_noinc($var),
-	    gv_stashpv(\"${(my $ntt=$ntype)=~s/_/::/g;\$ntt}\",TRUE));
+T_IV
+        sv_setiv($arg, (IV)$var);

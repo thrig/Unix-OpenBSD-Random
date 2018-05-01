@@ -8,11 +8,13 @@ MYMETA.*
 _build/
 cover_db/
 blib/
-inc/
 .lwpcookies
 .last_cover_stats
 nytprof.out
 pod2htm*.tmp
 pm_to_blib
+Random.bs
+Random.c
+Random.o
 Unix-OpenBSD-Random-*
 Unix-OpenBSD-Random-*.tar.gz

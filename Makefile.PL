@@ -8,7 +8,6 @@ use ExtUtils::MakeMaker;
 use lib qw(inc);
 use Devel::AssertOS qw(OpenBSD);
 
-# ...
 sub merge_key_into {
     my ( $href, $target, $source ) = @_;
     %{ $href->{$target} } = ( %{ $href->{$target} }, %{ delete $href->{$source} } );
@@ -24,10 +23,15 @@ my %params = (
     PL_FILES         => {},
     MIN_PERL_VERSION => '5.006',
 
-    CONFIGURE_REQUIRES => { 'ExtUtils::MakeMaker' => '0', },
+    CONFIGURE_REQUIRES => { 'ExtUtils::MakeMaker' => '6.48', 'strict' => 0, },
     BUILD_REQUIRES     => {},
-    TEST_REQUIRES      => { 'Test::More' => '0', 'lib' => 0, },
-    PREREQ_PM          => { 'strict' => 0, },
+    TEST_REQUIRES      => {
+        'Config'       => 0,
+        'Scalar::Util' => 0,
+        'Test::Most'   => 0,
+        'lib'          => 0,
+    },
+    PREREQ_PM => { 'Exporter' => 0, 'XSLoader' => 0, 'strict' => 0, },
 
     META_MERGE => {
         'meta-spec'         => { version => 2 },
@@ -50,7 +54,6 @@ my %params = (
 ) =~ tr/_//d;
 
 if ( $mm_version < 6.67_04 ) {
-    # Why? For the glory of the Butlarian Jihad, of course!
     *ExtUtils::MM_Any::_add_requirements_to_meta_v1_4 =
       \&ExtUtils::MM_Any::_add_requirements_to_meta_v2;
 }
