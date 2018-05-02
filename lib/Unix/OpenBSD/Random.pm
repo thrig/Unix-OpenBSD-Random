@@ -8,8 +8,10 @@ use warnings;
 require Exporter;
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw/arc4random arc4random_buf arc4random_uniform/;
+our %EXPORT_TAGS =
+  ( all => [qw(arc4random arc4random_buf arc4random_uniform)] );
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 require XSLoader;
 XSLoader::load( 'Unix::OpenBSD::Random', $VERSION );
@@ -37,6 +39,13 @@ function on OpenBSD. Other OS have this function call though may require
 L<arc4random_stir(3)> or such calls that this module does not support.
 
 =head1 FUNCTIONS
+
+All of these functions can be imported via
+
+  use Unix::OpenBSD::Random ':all';
+
+otherwise the individual functions must be listed for import as shown in
+the L</SYNOPSIS>, or the fully qualified module and function name used.
 
 =over 4
 
