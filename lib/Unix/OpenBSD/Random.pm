@@ -67,7 +67,11 @@ where such characters may cause problems.
   my $string = unpack "H*", $buf;
 
 Will throw an exception if the I<length> is outside the range of a
-C<size_t>.
+C<size_t> which on a 64-bit system means values greater than zero and
+probably somewhat smaller than 18446744073709551615.
+
+  $ cfu 'printf("%lu\n", SIZE_MAX)'
+  18446744073709551615
 
 Note that this interface has been made more Perl-like than the C version
 C<arc4random_buf(buf, nbytes)>.
